@@ -5,88 +5,151 @@ class Program
 
     static void Main()
     {
-        // TODO : keiskite FROM..TO skaicius pagal tai kiek spesite padaryt uzduociu. (-19...19, -99..99, ir tt.)
-        // min skaicius 
-        const int FROM_NUMBER = -9;
-        // max skaicius 
-        const int TO_NUMBER = 9;
+        //Sveiki,
+        //    Dabar padariau tik minimuma, veliau pasistengsiu padaryti iki pabaigos.
+        //    Dvejose vietose pacheat'inau, bet siam momentui nesugalvojau kito budo. :)
+        //    Taip pat constantu reziu nebevedziau, nes tik paziurejes i jusu koda supratau, kad jas reiketu tureti. 
+        //    Norejau, kad paziuretumete pradini mano parasyma.
 
-        string inputString = "";
-        int inputNumber = 0;
-
-        Console.Write("Sveiki!");
-        while (inputString != " ")
+        Console.WriteLine("Iveskite sveika skaiciu nuo -19 iki 19.");
+        string ivedimas = Console.ReadLine();
+        if (ArSkaicius(ivedimas) == true)
         {
-            Console.Write("\n(Enter SPACE to exit.)\nIveskite skaiciu:");
-            inputString = Console.ReadLine();
-            if (checkIfGoodNumber(inputString))
+            //Console.WriteLine($"Ivesta {ivedimas} reiksme yra skaicius.");
+            int skaicius = Convert.ToInt32(ivedimas); 
+            if (PatikrintiRezi(skaicius) == true)
             {
-                Console.WriteLine("Skaicius teisingas!");
-                inputNumber = Convert.ToInt32(inputString);
-                if (checkIfNumberInRange(FROM_NUMBER, TO_NUMBER, inputNumber))
-                {
-                    Console.WriteLine("Skaicius {0} zodziais: {1}", inputNumber, changeNumberToText(inputNumber));
-                }
-                else
-                {
-                    Console.WriteLine("Blogas skaicius {0}, prasau ivesti skaiciu reziuose: {1}..{2}", inputString, FROM_NUMBER, TO_NUMBER);
-                }
+                //Console.WriteLine($"Ivestas skaicius {ivedimas} teisinguose reziuose.");
+                Console.WriteLine($"Reiksme zodziais:\n{ArNeigiamas(skaicius)}"+ SkaiciaiZodziais(Math.Abs(skaicius)));
             }
             else
             {
-                Console.WriteLine("Ivesti duomenys:{0} nera skaicius!", inputString);
+                Console.WriteLine($"Ivestas skaicius {ivedimas} neteisinguose reziuose.");
             }
         }
+        else
+        {
+            Console.WriteLine($"Ivesta {ivedimas} reiksme nera skaicius.");
+        }
 
-        Console.WriteLine("\nAciu uz demesi, viso gero.");
-        Console.ReadKey();
+        Console.ReadLine();
     }
 
-    // bendra funkcija apjungti visom funkcijom kurias jus sukursit.
-    static string changeNumberToText(int number)
+
+    static bool ArSkaicius(string ivedimas)
     {
-        // TODO : pakeiskite sita funkcija pagal savo poreiki. (tiek kiek skaiciu spesite apdorot.)
-        return changeOnesToText(number);
+        //if (ivedimas == "-9" || ivedimas == "-8" || ivedimas == "-7" || ivedimas == "-6" || ivedimas == "-5" || ivedimas == "-4" || ivedimas == "-3" || ivedimas == "-2" || ivedimas == "-1" || ivedimas == "0" || ivedimas == "1" || ivedimas == "2" || ivedimas == "3" || ivedimas == "4" || ivedimas == "5" || ivedimas == "6" || ivedimas == "7" || ivedimas == "8" || ivedimas == "9")
+        //{
+        //    return true;
+        //}
+        //    return false;
+        int arSkaicius;
+        bool skaicius = int.TryParse(ivedimas, out arSkaicius);
+        return skaicius;
     }
 
-    // funkcija gauna string skaiciu, patikrina ar skaicius teisingu formatu. Pvz: "123", "-123" grazina true. "12a3", "1-23" grazina false.
-    static bool checkIfGoodNumber(string dataToCheck)
+    static bool PatikrintiRezi(int skaicius)
     {
-        throw new NotImplementedException("TODO: grazinkite true, jei tekstas yra teisingas skaicius.");
+        if (skaicius >= -19 && skaicius <= 19)
+        {
+            return true;
+        }
+        return false;
     }
 
-    // funkcija gauna true jei skaicius checkNumber yar tarp fromNumber ir toNumber (imtinai)
-    private static bool checkIfNumberInRange(int fromNumber, int toNumber, int checkNumber)
+
+    static string ArNeigiamas(int skaicius)
     {
-        throw new NotImplementedException("TODO: Patikrinkite ar checkNumber yar tarp skaiciu fromNumber,  toNumber");
+        if (skaicius < 0)
+        {
+            return "minus ";
+        }
+        return " ";
     }
 
-    // funkcija gauna int skaiciu, pakeicia ji i string teksta kuri zodziais nusako skaiciu. PVZ: -1684542 turi grazint - "minus vienas milijonas sesi simtai astuoniasdesimt keturi tukstanciai penki simtai keturiasdiasimt du"
-    static string changeOnesToText(int number)
+
+    static string SkaiciaiZodziais(int skaicius)
     {
-        throw new NotImplementedException("TODO: grazinkite skaiciu -9...9 zodziais.");
+
+        if (skaicius == 0)
+        {
+            return "nulis";
+        }
+        else if (skaicius == 1)
+        {
+            return "vienas";
+        }
+        else if (skaicius == 2)
+        {
+            return "du";
+        }
+        else if (skaicius == 3)
+        {
+            return "trys";
+        }
+        else if (skaicius == 4)
+        {
+            return "keturi";
+        }
+        else if (skaicius == 5)
+        {
+            return "penki";
+        }
+        else if (skaicius == 6)
+        {
+            return "sesi";
+        }
+        else if (skaicius == 7)
+        {
+            return "septyni";
+        }
+        else if (skaicius == 8)
+        {
+            return "astuoni";
+        }
+        else if (skaicius == 9)
+        {
+            return "devyni";
+        }
+         else if (skaicius == 10)
+        {
+            return "desimt";
+        }
+        else if (skaicius == 11)
+        {
+            return "vienuolika";
+        }
+        else if (skaicius == 12)
+        {
+            return "dvylika";
+        }
+        else if (skaicius == 13)
+        {
+            return "trylika";
+        }
+        else if (skaicius == 14)
+        {
+            return "keturiolika";
+        }
+        else if (skaicius == 15)
+        {
+            return "penkiolika";
+        }
+        else if (skaicius == 16)
+        {
+            return "sesiolika";
+        }
+        else if (skaicius == 17)
+        {
+            return "septyniolika";
+        }
+        else if (skaicius == 18)
+        {
+            return "astuoniolika";
+        }
+        else 
+        {
+            return "devyniolika";
+        }
     }
-
-    // TODO : sukurti funkcija kuri grazina skaiciu -19...19 zodziais - changeTeensToText
-
-    // TODO : sukurti funkcija kuri grazina skaiciu -99...99 zodziais - changeTensToText
-
-    // TODO : sukurti funkcija kuri grazina skaiciu -999...999 zodziais - changeHundredsToText
-
-    // TODO : sukurti funkcija kuri grazina skaiciu -9999...9999 zodziais - changeThousandsToText
-
-    // TODO : sukurti funkcija kuri grazina skaiciu -9999999...9999999 zodziais - changeMillionsToText
-
-    // TODO : sukurti funkcija kuri grazina skaiciu -9999999999...9999999999 zodziais - changeBilllionsToText
-
-
-
-    //Skaiciai zodziais:  
-    // "minus"; 
-    // "nulis", "vienas", "du", "trys", "keturi", "penki", "sesi", "septyni", "astuoni", "devyni"; 
-    // "desimt", "vienualika", "dvylika", "trylika", "keturiolika", "penkiolika", "sesiolika", "septyniolika", "astuoniolika", "devyniolika"; 
-    // "dvidesimt", "trisdesimt", "keturiasdesimt", "penkiasdesimt", "sesiasdesimt", "septyniasdesimt", "astuoniasdesimt", "devyniasdesimt"; 
-    // "simtas", "tukstantis", "milijonas", "milijardas"; 
-    // "simtai", "tukstanciai", "milijonai", "milijardai"; 
-    // "simtu", "tukstanciu", "milijonu", "milijardu"; 
-}
+ }
