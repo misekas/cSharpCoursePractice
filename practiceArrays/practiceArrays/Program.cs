@@ -5,7 +5,7 @@ class Program
 {
     static void Main()
     {
-        int number = 123455;
+        int number = 100000;
         GenerateNumber(number);
         Console.ReadLine();
     }
@@ -13,7 +13,7 @@ class Program
     static void GenerateNumber(int number)
     {
         int arrayNumber = number;
-        for (int i = 99999; i < 999999; i++)
+        for (int i = 99999; i < 999998; i++)
         {
           arrayNumber++;
           NumberToArray(arrayNumber);
@@ -29,10 +29,8 @@ class Program
         for (int i = 0; i < stringNumber.Length; i++)
         {
             membertoArray[i] = int.Parse(Convert.ToString(stringNumber[i]));
-            //Console.WriteLine(membertoArray[i]);
         }
         CheckAreMembersDifferentInNumber(membertoArray);
-        //Console.ReadLine();
     }
 
     static void CheckAreMembersDifferentInNumber(int[] membertoArray)
@@ -50,8 +48,7 @@ class Program
                          if (isMembersDifferent[4] != isMembersDifferent[5])
                         {
                             string joinMembers = string.Join("", isMembersDifferent);
-                            NumberMultiply(joinMembers);
-                            Console.WriteLine(isMembersDifferent);
+                            NumberMultiply(joinMembers, membertoArray);
                         }
                     }
                 }
@@ -60,41 +57,179 @@ class Program
 
     }
 
-    static void NumberMultiply(string joinMembers)
+    static void NumberMultiply(string joinMembers, int[] membertoArray)
     {
         int multiplyNumber = Convert.ToInt32(joinMembers);
         int multiply2 = multiplyNumber * 2;
+        if (multiply2 > 999999)
+        {
+            multiply2 = 0;
+        }
         int multiply3 = multiplyNumber * 3;
+        if (multiply3 > 999999)
+        {
+            multiply3 = 0;
+        }
         int multiply4 = multiplyNumber * 4;
+        if (multiply4 > 999999)
+        {
+            multiply4 = 0;
+        }
         int multiply5 = multiplyNumber * 5;
+        if (multiply5 > 999999)
+        {
+            multiply5 = 0;
+        }
         int multiply6 = multiplyNumber * 6;
-        MultiplyedNumberToArray(multiply2, multiply3, multiply4, multiply5, multiply6);
+        if (multiply6 > 999999)
+        {
+            multiply6 = 0;
+        }
+        MultiplyedNumberToArray(multiply2, multiply3, multiply4, multiply5, multiply6, membertoArray);
     }
 
-    static void MultiplyedNumberToArray(int multiply2 , int multiply3, int multiply4, int multiply5, int multiply6)
+    static void MultiplyedNumberToArray(int multiply2 , int multiply3, int multiply4, int multiply5, int multiply6, int[] membertoArray)
     {
-        int[] multiplyedToArray = new int[5] { multiply2 , multiply3, multiply4, multiply5, multiply6 };
+        int[] multiplyedToArray = new int[5] {multiply2 , multiply3, multiply4, multiply5, multiply6 };
         foreach (int item in multiplyedToArray)
         {
             string stringMultiplyedNumber = Convert.ToString(item);
-
-            int[] multiplyedMembertoArray = new int[6];
+            
+            int[] multiplyedMemberToArray = new int[6];
             for (int i = 0; i < stringMultiplyedNumber.Length; i++)
             {
-                multiplyedMembertoArray[i] = int.Parse(Convert.ToString(stringMultiplyedNumber[i]));
+                multiplyedMemberToArray[i] = int.Parse(Convert.ToString(stringMultiplyedNumber[i]));
             }
-           // CheckArraysMembers(multiplyedMembertoArray);
+            CheckArraysMembers(multiplyedMemberToArray, membertoArray);
         }
     }
 
-    //static bool CheckArraysMembers( int[] multiplyedMembertoArray)
-    //{
-    //    if (membertoArray.SequenceEqual(multiplyedMembertoArray))
-    //    {
-    //        return true;
-    //    }
-    //    return false;
-    //}
+    static bool CheckArraysMembers(int[] multiplyedMemberToArray, int[] membertoArray)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+
+            int[][] arrayNumberSources = new int[][] { membertoArray, multiplyedMemberToArray };
+            if (membertoArray[0] != multiplyedMemberToArray[0])
+            {
+                if (membertoArray[0] != multiplyedMemberToArray[1])
+                {
+                    if (membertoArray[0] != multiplyedMemberToArray[2])
+                    {
+                        if (membertoArray[0] != multiplyedMemberToArray[3])
+                        {
+                            if (membertoArray[0] != multiplyedMemberToArray[4])
+                            {
+                                if (membertoArray[0] != multiplyedMemberToArray[5])
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (membertoArray[1] != multiplyedMemberToArray[0])
+            {
+                if (membertoArray[1] != multiplyedMemberToArray[1])
+                {
+                    if (membertoArray[1] != multiplyedMemberToArray[2])
+                    {
+                        if (membertoArray[1] != multiplyedMemberToArray[3])
+                        {
+                            if (membertoArray[1] != multiplyedMemberToArray[4])
+                            {
+                                if (membertoArray[1] != multiplyedMemberToArray[5])
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (membertoArray[2] != multiplyedMemberToArray[0])
+            {
+                if (membertoArray[2] != multiplyedMemberToArray[1])
+                {
+                    if (membertoArray[2] != multiplyedMemberToArray[2])
+                    {
+                        if (membertoArray[2] != multiplyedMemberToArray[3])
+                        {
+                            if (membertoArray[2] != multiplyedMemberToArray[4])
+                            {
+                                if (membertoArray[2] != multiplyedMemberToArray[5])
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (membertoArray[3] != multiplyedMemberToArray[0])
+            {
+                if (membertoArray[3] != multiplyedMemberToArray[1])
+                {
+                    if (membertoArray[3] != multiplyedMemberToArray[2])
+                    {
+                        if (membertoArray[3] != multiplyedMemberToArray[3])
+                        {
+                            if (membertoArray[3] != multiplyedMemberToArray[4])
+                            {
+                                if (membertoArray[3] != multiplyedMemberToArray[5])
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (membertoArray[4] != multiplyedMemberToArray[0])
+            {
+                if (membertoArray[4] != multiplyedMemberToArray[1])
+                {
+                    if (membertoArray[4] != multiplyedMemberToArray[2])
+                    {
+                        if (membertoArray[4] != multiplyedMemberToArray[3])
+                        {
+                            if (membertoArray[4] != multiplyedMemberToArray[4])
+                            {
+                                if (membertoArray[4] != multiplyedMemberToArray[5])
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (membertoArray[5] != multiplyedMemberToArray[0])
+            {
+                if (membertoArray[5] != multiplyedMemberToArray[1])
+                {
+                    if (membertoArray[5] != multiplyedMemberToArray[2])
+                    {
+                        if (membertoArray[5] != multiplyedMemberToArray[3])
+                        {
+                            if (membertoArray[5] != multiplyedMemberToArray[4])
+                            {
+                                if (membertoArray[5] != multiplyedMemberToArray[5])
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+   
+   
 }
+
 
 
